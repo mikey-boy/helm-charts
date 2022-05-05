@@ -1,0 +1,10 @@
+{{- range .Values.namespaces.install }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: {{ . }}
+    toolkit.fluxcd.io/tenant: {{ $.Values.tenant }}
+  name: {{ . }}
+{{- end }}

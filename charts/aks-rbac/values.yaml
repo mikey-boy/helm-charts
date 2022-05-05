@@ -1,0 +1,4 @@
+# There are no default values for this chart. It only creates namespaces
+# and role-bindings, therefore each tenant is different and must specify
+# their own unique values file. For an example of how the values file can
+# be structured for a tenant see 'values.example.yaml' in this directory

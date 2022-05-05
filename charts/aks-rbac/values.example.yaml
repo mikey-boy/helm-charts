@@ -1,0 +1,39 @@
+# Team which we are configuring RBAC policies for
+tenant: team1
+
+# If the chart is uninstalled, namespaces under 'install' will be cleared!
+namespaces:
+  install:  # Namespaces to be created
+    - ns-1
+    - ns-2
+    - ns-3
+  exists:   # Namespaces that are associated with this tenant but already exist
+    - ns-4
+    - ns-5
+
+# Azure groups and their associated permissions
+groups:
+  - name: team1                               # not necessary but good for readability and used for role binding naming
+    id: 17275e86-fd8a-43d5-9de7-bbb31a46ef03  # the object ID of the group in Azure
+    bindings:
+      - role: view        # Using ClusterRole 'view'
+        scope: cluster    # create a ClusterRoleBinding
+
+      - role: admin       # Using ClusterRole 'admin'
+        scope: namespace  # create a RoleBinding
+        namespaces:       # in the associated namespaces
+        - utils
+        - ingress
+        - logging
+
+serviceAccounts:
+  - name: svc-ingress               # name of service account
+    namespace: ingress              # namespace it is created in
+    bindings:
+      - role: ingress-watcher       # Using ClusterRole 'ingress-watcher'
+        scope: cluster              # create a ClusterRoleBinding
+
+      - role: admin                 # Using ClusterRole 'admin'
+        scope: namespace            # create a RoleBinding
+        namespaces:                 # in the namespace 'ingress'
+        - ingress
