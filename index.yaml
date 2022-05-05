@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  aks-rbac:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-05-05T14:26:35.637777508Z"
+    description: A Helm chart to configure AKS RBAC for new tenants
+    digest: 3e7c8fc5aa1a2fad527ac602a9bd6c26df1ea7b1e187e76c857a02f77cb526c4
+    name: aks-rbac
+    type: application
+    urls:
+    - https://github.com/mikey-boy/helm-charts/releases/download/aks-rbac-0.1.0/aks-rbac-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-05-05T14:26:35.465492992Z"
