@@ -37,3 +37,4 @@ serviceAccounts:
         scope: namespace            # create a RoleBinding
         namespaces:                 # in the namespace 'ingress'
         - ingress
+
