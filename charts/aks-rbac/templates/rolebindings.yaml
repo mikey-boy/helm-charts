@@ -3,6 +3,8 @@
 {{- $accountNs:= .namespace -}}
 
 {{- range .bindings }}
+{{- $role := .role -}}
+
 {{ if eq .scope "cluster" }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -10,11 +12,11 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     toolkit.fluxcd.io/tenant: {{ $.Values.tenant }}
-  name: "svc-{{ $accountName }}-{{ .role }}"
+  name: "svc-{{ $accountName }}-{{ $role }}"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ .role }}
+  name: {{ $role }}
 subjects:
 - kind: ServiceAccount
   name: {{ $accountName }}
@@ -29,12 +31,12 @@ kind: RoleBinding
 metadata:
   labels:
     toolkit.fluxcd.io/tenant: {{ $.Values.tenant }}
-  name: "svc-{{ $accountName }}-{{ .role }}"
+  name: "svc-{{ $accountName }}-{{ $role }}"
   namespace: {{ $namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ .role }}
+  name: {{ $role }}
 subjects:
 - kind: ServiceAccount
   name: {{ $accountName }}
